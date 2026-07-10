@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yataş Group - Corporate Deck</title>
+    <title>Yataş Group - Corporate Deck Portal</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
@@ -11,7 +11,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            /* Arka plana kurumsal görseli ekledik ve esnettik */
             background: url('image_26c6be.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -44,7 +43,11 @@
             padding: 20px;
             box-shadow: 5px 0 25px rgba(0,0,0,0.5);
             z-index: 200;
+            overflow-y: auto; /* Çok sunum eklenirse menü kendi içinde kayabilsin */
         }
+
+        .sidebar-nav::-webkit-scrollbar { width: 4px; }
+        .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
 
         /* Beyaz Logoluk Alan */
         .logo-container {
@@ -55,8 +58,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            flex-shrink: 0;
         }
 
         .logo-container img {
@@ -70,40 +74,47 @@
             color: #a4c2f4;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 1px solid rgba(255,255,255,0.15);
             padding-bottom: 12px;
+            flex-shrink: 0;
         }
 
+        /* YENİ KATEGORİ BAŞLIKLARI (ANA BAŞLIKLAR) */
         .menu-section-title {
-            font-size: 11px;
-            color: #cbdcf7;
-            font-weight: bold;
+            font-size: 13px;
+            color: #ffffff;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            margin-top: 15px;
+            margin-bottom: 10px;
             padding-left: 5px;
+            border-left: 3px solid #ffffff;
+            padding-top: 2px;
+            padding-bottom: 2px;
         }
 
         .deck-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
+            margin-bottom: 20px; /* İki kategori arasında boşluk */
         }
 
         .deck-btn {
             width: 100%;
-            padding: 14px 18px;
+            padding: 12px 16px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 6px;
             color: #ffffff;
             text-align: left;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.23s ease-in-out;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -117,7 +128,7 @@
         .deck-btn.active-deck {
             background: #ffffff;
             border-color: #ffffff;
-            color: #002870; /* Ters yüz kurumsal kontrast */
+            color: #002870; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
@@ -130,7 +141,7 @@
             color: #002870;
         }
 
-        /* ÇALIŞMA ALANI */
+        /* WORKSPACE */
         .workspace {
             flex: 1;
             display: flex;
@@ -139,7 +150,6 @@
             align-items: center;
             padding: 20px 0;
             position: relative;
-            /* İçeriklerin arkasındaki cam efekti */
             background: rgba(7, 13, 34, 0.35);
         }
 
@@ -230,7 +240,7 @@
         /* SAĞ PANEL: SLAYT ŞERİDİ */
         .sidebar-thumbnails {
             width: 200px;
-            background: rgba(0, 40, 112, 0.4); /* Yataş mavisi transparan */
+            background: rgba(0, 40, 112, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow-y: auto;
@@ -262,7 +272,7 @@
             font-weight: bold; padding: 1px 5px; border-radius: 3px;
         }
         
-        /* ALT PANEL VE NETLEŞTİRİLEN İPUCU */
+        /* ALT PANEL */
         .bottom-bar-area {
             width: 100%; display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 6px;
@@ -292,7 +302,6 @@
         }
         #pageIndicator { color: #ffffff; }
         
-        /* BEYAZ VE NET OKUNUR İPUCU METNİ */
         .hint { 
             font-size: 12px; 
             color: #ffffff !important; 
@@ -303,20 +312,27 @@
 </head>
 <body>
 
-    <div id="globalLoading">Yataş Group Deck is launching...</div>
+    <div id="globalLoading">Yataş Group Deck Engine is launching...</div>
     
     <div class="portal-wrapper">
         
+        <!-- SOL BANNER: KATEGORİZASYONLU YATAŞ MENÜSÜ -->
         <div class="sidebar-nav">
             <div class="logo-container">
                 <img src="image_26c641.png" alt="Yataş Grup Logo">
             </div>
             <div class="brand-subtitle">Corporate Deck Portal</div>
             
-            <div class="menu-section-title">Avaılable Presentatıons</div>
-            <ul class="deck-list" id="deckList"></ul>
+            <!-- 1. ANA BAŞLIK: CATALOGUES -->
+            <div class="menu-section-title">Catalogues</div>
+            <ul class="deck-list" id="cataloguesList"></ul>
+
+            <!-- 2. ANA BAŞLIK: OTHER PRESENTATIONS -->
+            <div class="menu-section-title">Other Presentations</div>
+            <ul class="deck-list" id="otherList"></ul>
         </div>
 
+        <!-- WORKSPACE -->
         <div class="workspace">
             <div class="main-container" id="mainContainer">
                 <div class="scene" id="scene">
@@ -338,6 +354,7 @@
                 <div class="sidebar-thumbnails" id="sidebarThumbnails"></div>
             </div>
 
+            <!-- KONTROLLER -->
             <div class="bottom-bar-area" id="bottomBarArea">
                 <div class="controls">
                     <button id="prevBtn" disabled>◀ Previous</button>
@@ -356,13 +373,21 @@
     </div>
 
     <script>
-        // Sunum isimleri ve PDF dosyalarının listesi
-        const presentations = [
-            { id: 0, title: "Enza Home Collections", url: "Enza Home Collections.pdf" },
-            { id: 1, title: "Yatas Bedding Catalogue", url: "Yatas Bedding Catalogue.pdf" },
-            { id: 2, title: "Yatas Project Presentation", url: "Yatas Project Presentation.pdf" },
-            { id: 3, title: "Yatas Projects References", url: "Yatas Projects References.pdf" }
-        ];
+        // İNCELEMEN İÇİN ÖZELLİKLE AYIRDIĞIM YENİ VERİ YAPISI
+        // Dosya isimlerini (url kısımlarını) klasöründekilerle birebir eşleyebilirsin abi.
+        const presentationData = {
+            catalogues: [
+                { title: "Enza Home", url: "Enza Home.pdf" },
+                { title: "Yataş Bedding", url: "Yataş Bedding.pdf" },
+            ],
+            otherPresentations: [
+                { title: "Yataş Project", url: "Yataş Project.pdf" },
+                { title: "Yataş Project References", url: "Yataş Project References.pdf" }
+            ]
+        };
+
+        // Arka planda aktif sunumu yönetmek için düz listeye çeviriyoruz
+        const presentations = [...presentationData.catalogues, ...presentationData.otherPresentations];
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
@@ -379,25 +404,52 @@
         const scene = document.getElementById('scene');
         const sidebarThumbnails = document.getElementById('sidebarThumbnails');
         const gotoInput = document.getElementById('gotoInput');
-        const deckList = document.getElementById('deckList');
+        const cataloguesList = document.getElementById('cataloguesList');
+        const otherList = document.getElementById('otherList');
         const globalLoading = document.getElementById('globalLoading');
 
+        // BEYNİ BURASI: Sol taraftaki listeleri iki ayrı gruba dinamik olarak basan fonksiyon
         function buildSidebarMenu() {
-            deckList.innerHTML = "";
-            presentations.forEach((deck, idx) => {
+            cataloguesList.innerHTML = "";
+            otherList.innerHTML = "";
+
+            let globalIdx = 0;
+
+            // Catalogues Listesini Oluşturma
+            presentationData.catalogues.forEach((deck) => {
+                const currentIdx = globalIdx;
                 const li = document.createElement('li');
                 const btn = document.createElement('button');
-                btn.className = `deck-btn ${idx === 0 ? 'active-deck' : ''}`;
+                btn.className = `deck-btn ${currentIdx === 0 ? 'active-deck' : ''}`;
                 btn.innerText = deck.title;
-                btn.addEventListener('click', () => switchPresentation(idx));
+                btn.setAttribute('data-index', currentIdx);
+                btn.addEventListener('click', () => switchPresentation(currentIdx));
                 li.appendChild(btn);
-                deckList.appendChild(li);
+                cataloguesList.appendChild(li);
+                globalIdx++;
+            });
+
+            // Other Presentations Listesini Oluşturma
+            presentationData.otherPresentations.forEach((deck) => {
+                const currentIdx = globalIdx;
+                const li = document.createElement('li');
+                const btn = document.createElement('button');
+                btn.className = `deck-btn`;
+                btn.innerText = deck.title;
+                btn.setAttribute('data-index', currentIdx);
+                btn.addEventListener('click', () => switchPresentation(currentIdx));
+                li.appendChild(btn);
+                otherList.appendChild(li);
+                globalIdx++;
             });
         }
 
         async function switchPresentation(index) {
             const buttons = document.querySelectorAll('.deck-btn');
-            buttons.forEach((b, i) => b.classList.toggle('active-deck', i === index));
+            buttons.forEach(b => {
+                const bIdx = parseInt(b.getAttribute('data-index'));
+                b.classList.toggle('active-deck', bIdx === index);
+            });
 
             globalLoading.style.display = 'flex';
             globalLoading.innerText = `Loading "${presentations[index].title}"...`;
@@ -579,7 +631,7 @@
 
         window.onload = () => {
             buildSidebarMenu();
-            loadPDF(presentations[0].url);
+            loadPDF(presentations[0].url); // İlk açılışta listenin en üstündeki PDF'i yükler
         };
     </script>
 </body>
