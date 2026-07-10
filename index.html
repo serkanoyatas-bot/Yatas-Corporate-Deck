@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yataş Group - Corporate Presentation Portal</title>
+    <title>Yataş Group - Corporate Deck</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
@@ -11,7 +11,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            background: radial-gradient(circle, #1a2639 0%, #0b111e 100%);
+            /* Arka plana kurumsal görseli ekledik ve esnettik */
+            background: url('image_26c6be.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             height: 100vh;
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -21,11 +23,10 @@
         
         #globalLoading { 
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #0b111e; z-index: 10000; display: flex; 
+            background: #070d22; z-index: 10000; display: flex; 
             justify-content: center; align-items: center; font-size: 18px; letter-spacing: 1px;
         }
 
-        /* ANASAYFA KAPSAYICI */
         .portal-wrapper {
             display: flex;
             width: 100vw;
@@ -33,40 +34,50 @@
             overflow: hidden;
         }
 
-        /* SOL PANEL: YATAŞ CORPORATE NAVIGATOR */
+        /* SOL PANEL: YATAŞ KURUMSAL BANNER */
         .sidebar-nav {
             width: 320px;
-            background: linear-gradient(180deg, #0f1c3f 0%, #070d22 100%);
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            background: #002870; /* Yataş Kurumsal Lacivert */
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            padding: 30px 20px;
+            padding: 20px;
             box-shadow: 5px 0 25px rgba(0,0,0,0.5);
             z-index: 200;
         }
 
-        .brand-title {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        /* Beyaz Logoluk Alan */
+        .logo-container {
+            width: 100%;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         .brand-subtitle {
-            font-size: 12px;
-            color: #5c729c;
+            font-size: 11px;
+            color: #a4c2f4;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 35px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 12px;
         }
 
         .menu-section-title {
             font-size: 11px;
-            color: #465a80;
+            color: #cbdcf7;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -84,10 +95,10 @@
         .deck-btn {
             width: 100%;
             padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            color: #a4b3d6;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #ffffff;
             text-align: left;
             font-size: 13.5px;
             font-weight: 600;
@@ -99,30 +110,27 @@
         }
 
         .deck-btn:hover {
-            background: rgba(255, 255, 255, 0.07);
-            color: #fff;
-            border-color: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateX(4px);
         }
 
         .deck-btn.active-deck {
-            background: linear-gradient(90deg, #1e3d85 0%, #15295c 100%);
-            border-color: #3b66c4;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(26, 61, 133, 0.4);
+            background: #ffffff;
+            border-color: #ffffff;
+            color: #002870; /* Ters yüz kurumsal kontrast */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .deck-btn::before {
             content: "•";
-            color: #3b66c4;
+            color: #fff;
             font-size: 16px;
-            transition: all 0.25s;
         }
         .deck-btn.active-deck::before {
-            color: #fff;
+            color: #002870;
         }
 
-        /* SAĞ TARAF: KONTROLLER VE SUNUM ARENASI */
+        /* ÇALIŞMA ALANI */
         .workspace {
             flex: 1;
             display: flex;
@@ -131,7 +139,8 @@
             align-items: center;
             padding: 20px 0;
             position: relative;
-            background: radial-gradient(circle, #1a2536 0%, #0d131c 100%);
+            /* İçeriklerin arkasındaki cam efekti */
+            background: rgba(7, 13, 34, 0.35);
         }
 
         .main-container {
@@ -201,7 +210,7 @@
 
         .arrow-btn {
             width: 50px; height: 50px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -210,6 +219,7 @@
             backdrop-filter: blur(5px);
             user-select: none;
         }
+        .nav-overlay-zone:hover { cursor: pointer; }
         .nav-overlay-zone:hover .arrow-btn { opacity: 0.75; background: rgba(0, 0, 0, 0.7); }
         .arrow-btn:hover {
             opacity: 1 !important; transform: scale(1.1);
@@ -220,8 +230,8 @@
         /* SAĞ PANEL: SLAYT ŞERİDİ */
         .sidebar-thumbnails {
             width: 200px;
-            background: rgba(11, 17, 30, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 40, 112, 0.4); /* Yataş mavisi transparan */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow-y: auto;
             display: flex;
@@ -234,16 +244,16 @@
         }
 
         .sidebar-thumbnails::-webkit-scrollbar { width: 5px; }
-        .sidebar-thumbnails::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+        .sidebar-thumbnails::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
         .thumb-box {
             position: relative; width: 92%; cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 6px;
-            overflow: hidden; transition: all 0.2s ease-in-out; opacity: 0.4;
-            background: rgba(255, 255, 255, 0.02); flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 6px;
+            overflow: hidden; transition: all 0.2s ease-in-out; opacity: 0.5;
+            background: rgba(255, 255, 255, 0.05); flex-shrink: 0;
         }
-        .thumb-box:hover { opacity: 0.8; border-color: rgba(255,255,255,0.4); }
-        .thumb-box.active-thumb { border-color: #3b66c4; opacity: 1; box-shadow: 0 0 12px rgba(59,102,196,0.6); }
+        .thumb-box:hover { opacity: 0.8; border-color: rgba(255,255,255,0.5); }
+        .thumb-box.active-thumb { border-color: #ffffff; opacity: 1; box-shadow: 0 0 12px rgba(255,255,255,0.5); }
         .thumb-box canvas { width: 100% !important; height: auto !important; display: block; }
 
         .thumb-label {
@@ -252,7 +262,7 @@
             font-weight: bold; padding: 1px 5px; border-radius: 3px;
         }
         
-        /* ALT KONTROL PANELİ */
+        /* ALT PANEL VE NETLEŞTİRİLEN İPUCU */
         .bottom-bar-area {
             width: 100%; display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 6px;
@@ -261,14 +271,14 @@
 
         .controls {
             display: flex; align-items: center; gap: 15px; 
-            background: rgba(7, 13, 34, 0.9); padding: 10px 25px; border-radius: 50px;
-            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(0, 40, 112, 0.85); padding: 10px 25px; border-radius: 50px;
+            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.15);
             box-shadow: 0 10px 35px rgba(0,0,0,0.6);
         }
         
         .bottom-bar-area button {
             padding: 8px 18px; font-size: 12px; font-weight: bold; cursor: pointer;
-            background: #fff; color: #111; border: none; border-radius: 25px;
+            background: #fff; color: #002870; border: none; border-radius: 25px;
             transition: all 0.2s;
         }
         .bottom-bar-area button:hover { background: #e5e5e5; }
@@ -277,26 +287,34 @@
         .goto-container { display: flex; align-items: center; gap: 5px; font-size: 13px; }
         .goto-input {
             width: 40px; padding: 3px 5px; border-radius: 5px;
-            border: 1px solid rgba(255,255,255,0.15); background: #151f30;
+            border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.4);
             color: #fff; text-align: center; font-weight: bold;
         }
-        #pageIndicator { color: #8a9cbd; }
-        .hint { font-size: 11px; color: #4e5e7a; }
+        #pageIndicator { color: #ffffff; }
+        
+        /* BEYAZ VE NET OKUNUR İPUCU METNİ */
+        .hint { 
+            font-size: 12px; 
+            color: #ffffff !important; 
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+        }
     </style>
 </head>
 <body>
 
-    <div id="globalLoading">Yataş Group Presentation Engine is launching...</div>
+    <div id="globalLoading">Yataş Group Deck is launching...</div>
     
     <div class="portal-wrapper">
         
         <div class="sidebar-nav">
-            <div class="brand-title">Yataş Group</div>
+            <div class="logo-container">
+                <img src="image_26c641.png" alt="Yataş Grup Logo">
+            </div>
             <div class="brand-subtitle">Corporate Deck Portal</div>
             
-            <div class="menu-section-title">Available Presentations</div>
-            <ul class="deck-list" id="deckList">
-                </ul>
+            <div class="menu-section-title">Avaılable Presentatıons</div>
+            <ul class="deck-list" id="deckList"></ul>
         </div>
 
         <div class="workspace">
@@ -338,12 +356,12 @@
     </div>
 
     <script>
-        // SUNUM KILAVUZU ARRAY'İ (Buraya 4 adet sunumunu tanımlıyorsun abi)
+        // Sunum isimleri ve PDF dosyalarının listesi
         const presentations = [
-            { id: 0, title: "Yatas Bedding Catalogue", url: "Yatas Bedding Catalogue.pdf" },
+            { id: 0, title: "Yataş Corporate Deck", url: "pdf1.pdf" },
             { id: 1, title: "Enza Home Collections", url: "Enza Home Collections.pdf" },
-            { id: 2, title: "Yatas Project Presentation", url: "Yatas Project Presentation.pdf" },
-            { id: 3, title: "Yatas Projects References", url: "Yatas Projects References.pdf" }
+            { id: 2, title: "Yataş Bedding Catalogue", url: "pdf3.pdf" },
+            { id: 3, title: "Yataş Project Presentation", url: "pdf4.pdf" }
         ];
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
@@ -352,7 +370,6 @@
         let pages = [];
         let thumbElements = [];
         let pdfDoc = null;
-        let currentRenderTask = null;
         
         let scale = 1; let posX = 0; let posY = 0;
         let isDragging = false; let startX; let startY;
@@ -365,7 +382,6 @@
         const deckList = document.getElementById('deckList');
         const globalLoading = document.getElementById('globalLoading');
 
-        // SOL MENÜ BUTONLARINI RENDER ETME
         function buildSidebarMenu() {
             deckList.innerHTML = "";
             presentations.forEach((deck, idx) => {
@@ -379,7 +395,6 @@
             });
         }
 
-        // 4 PDF ARASINDA KUSURSUZ GEÇİŞ TETİKLEYİCİSİ
         async function switchPresentation(index) {
             const buttons = document.querySelectorAll('.deck-btn');
             buttons.forEach((b, i) => b.classList.toggle('active-deck', i === index));
@@ -387,7 +402,6 @@
             globalLoading.style.display = 'flex';
             globalLoading.innerText = `Loading "${presentations[index].title}"...`;
 
-            // Eski hafızayı veDOM'u temizle
             book.innerHTML = '';
             sidebarThumbnails.innerHTML = '';
             pages = [];
@@ -487,7 +501,7 @@
                     if (pageNum > 3) { renderPage(pageNum, totalPages); }
                 }
             } catch (error) {
-                globalLoading.innerText = "Error loading PDF file. Please check file path.";
+                globalLoading.innerText = "Error loading PDF file. Please check file paths.";
                 console.error(error);
             }
         }
